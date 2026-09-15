@@ -60,7 +60,7 @@ Note, since the pipeline is now using Nextflow DSL2, each process will be run wi
 | Dependency     | Old version | New version      |
 | -------------- | ----------- | ---------------- |
 | `blast`        | 2.16.0      | 2.17.0           |
-| `Freyja`       | 2.0.1       | 2.0.3            |
+| `Freyja`       | 2.0.1       | 2.0.4            |
 | `sierra-local` |             | 0.4.3            |
 | `liftoff`      |             | 1.6.3            |
 | `pysam`        |             | 0.23.3           |

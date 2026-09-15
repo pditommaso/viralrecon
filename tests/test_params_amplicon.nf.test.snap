@@ -65,13 +65,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -1048,13 +1048,13 @@
                     "fastqc": "0.12.1"
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -1763,13 +1763,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -3367,13 +3367,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -4838,13 +4838,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -5967,13 +5967,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -7013,13 +7013,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -8018,13 +8018,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -9657,13 +9657,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -10723,13 +10723,13 @@
                     "fastqc": "0.12.1"
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
@@ -12003,13 +12003,13 @@
                     "sed": 4.9
                 },
                 "FREYJA_BOOT": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_DEMIX": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "FREYJA_VARIANTS": {
-                    "freyja": "2.0.3"
+                    "freyja": "2.0.4"
                 },
                 "GUNZIP_FASTA": {
                     "gunzip": 1.13
