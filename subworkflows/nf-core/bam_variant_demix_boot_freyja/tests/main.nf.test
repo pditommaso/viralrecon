@@ -18,10 +18,6 @@ nextflow_workflow {
     test("sarscov2 - bam - val - nodb"){
 
         when {
-            params {
-                module_args = '--depthcutoff 1'
-            }
-
             workflow {
                 """
                 input[0] = Channel.of([
@@ -34,7 +30,6 @@ nextflow_workflow {
                 input[4] = 'freyja_db'
                 input[5] = []
                 input[6] = []
-                input[7] = []
                 """
             }
         }
@@ -42,16 +37,14 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success},
+                { assert snapshot(workflow.out.variants,
+                                  workflow.out.versions).match() },
                 // All depend on a database that gets updated regularly
                 { assert path(workflow.out.demix.get(0).get(1)).getText().contains("summarized") },
                 { assert path(workflow.out.summarized.get(0).get(1)).getText().contains("0.025,") },
                 { assert path(workflow.out.lineages.get(0).get(1)).getText().contains("0.025,") },
-                { assert snapshot(
-                    workflow.out.variants,
-                    file(workflow.out.lineages_meta.get(0)).name,
-                    file(workflow.out.lineages_topology.get(0)).name,
-                    file(workflow.out.barcodes.get(0)).name,
-                ).match() },
+                { assert path(workflow.out.barcodes.get(0)).exists() },
+                { assert path(workflow.out.lineages_meta.get(0)).exists() },
             )
         }
     }
@@ -70,10 +63,6 @@ nextflow_workflow {
         }
 
         when {
-            params {
-                module_args = '--depthcutoff 1'
-            }
-
             workflow {
                 """
                 input[0] = Channel.of([
@@ -86,7 +75,6 @@ nextflow_workflow {
                 input[4] = 'test_db'
                 input[5] = FREYJA_UPDATE.out.barcodes
                 input[6] = FREYJA_UPDATE.out.lineages_meta
-                input[7] = FREYJA_UPDATE.out.lineages_topology
                 """
             }
         }
@@ -94,16 +82,14 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success},
+                { assert snapshot(workflow.out.variants,
+                                  workflow.out.versions).match() },
                 // All depend on a database that gets updated regularly
                 { assert path(workflow.out.demix.get(0).get(1)).getText().contains("summarized") },
                 { assert path(workflow.out.summarized.get(0).get(1)).getText().contains("0.025,") },
                 { assert path(workflow.out.lineages.get(0).get(1)).getText().contains("0.025,") },
-                { assert snapshot(
-                    workflow.out.variants,
-                    file(workflow.out.lineages_meta.get(0)).name,
-                    file(workflow.out.lineages_topology.get(0)).name,
-                    file(workflow.out.barcodes.get(0)).name,
-                ).match() },
+                { assert path(workflow.out.barcodes.get(0)).exists() },
+                { assert path(workflow.out.lineages_meta.get(0)).exists() },
             )
         }
     }
@@ -111,10 +97,6 @@ nextflow_workflow {
     test("sarscov2 - bam - skip - val - nodb"){
 
         when {
-            params {
-                module_args = '--depthcutoff 1'
-            }
-
             workflow {
                 """
                 input[0] = Channel.of([
@@ -122,12 +104,11 @@ nextflow_workflow {
                       file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
                 ])
                 input[1] = Channel.of([file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)])
-                input[2] = true     // skip bootstrapping
+                input[2] = true
                 input[3] = 0
                 input[4] = 'test_db'
                 input[5] = []
                 input[6] = []
-                input[7] = []
                 """
             }
         }
@@ -135,44 +116,12 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success},
+                { assert snapshot(workflow.out.variants,
+                                  workflow.out.versions).match() },
                 // All depend on a database that gets updated regularly
                 { assert path(workflow.out.demix.get(0).get(1)).getText().contains("summarized") },
-                { assert snapshot(
-                    workflow.out.variants,
-                    file(workflow.out.lineages_meta.get(0)).name,
-                    file(workflow.out.lineages_topology.get(0)).name,
-                    file(workflow.out.barcodes.get(0)).name,
-                ).match() },
-            )
-        }
-    }
-
-    test("sarscov2 - bam - val - nodb - stub"){
-
-        options "-stub"
-
-        when {
-            workflow {
-                """
-                input[0] = Channel.of([
-                    [ id:'test', single_end:false ], // meta map
-                      file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true),
-                ])
-                input[1] = Channel.of([file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)])
-                input[2] = false
-                input[3] = 3
-                input[4] = 'freyja_db'
-                input[5] = []
-                input[6] = []
-                input[7] = []
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success},
-                { assert snapshot(sanitizeOutput(workflow.out)).match() },
+                { assert path(workflow.out.barcodes.get(0)).exists() },
+                { assert path(workflow.out.lineages_meta.get(0)).exists() },
             )
         }
     }

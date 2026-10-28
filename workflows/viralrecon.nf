@@ -33,13 +33,13 @@ if (params.platform == 'illumina') {
         params.input, params.fasta, params.gff, params.bowtie2_index,
         params.kraken2_db, params.primer_bed, params.primer_fasta,
         params.blast_db, params.spades_hmm, params.multiqc_config,
-        params.freyja_barcodes, params.freyja_lineages_meta, params.freyja_lineages_topology, params.additional_annotation
+        params.freyja_barcodes, params.freyja_lineages, params.additional_annotation
     ]
 } else if (params.platform == 'nanopore') {
     checkPathParamList = [
         params.input, params.fastq_dir,
         params.sequencing_summary, params.gff,
-        params.freyja_barcodes, params.freyja_lineages_meta, params.freyja_lineages_topology, params.additional_annotation,
+        params.freyja_barcodes, params.freyja_lineages, params.additional_annotation,
         params.kraken2_db
     ]
 }
@@ -517,9 +517,9 @@ workflow VIRALRECON {
                 params.freyja_repeats,
                 params.freyja_db_name,
                 params.freyja_barcodes,
-                params.freyja_lineages_meta,
-                params.freyja_lineages_topology,
+                params.freyja_lineages,
             )
+            ch_versions       = ch_versions.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.versions)
             ch_multiqc_files  = ch_multiqc_files.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.demix.collect{it[1]}.ifEmpty([]))
         }
 
@@ -1136,9 +1136,9 @@ workflow VIRALRECON {
                 params.freyja_repeats,
                 params.freyja_db_name,
                 params.freyja_barcodes,
-                params.freyja_lineages_meta,
-                params.freyja_lineages_topology,
+                params.freyja_lineages,
             )
+            ch_versions       = ch_versions.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.versions)
             ch_multiqc_files  = ch_multiqc_files.mix(BAM_VARIANT_DEMIX_BOOT_FREYJA.out.demix.collect{it[1]}.ifEmpty([]))
         }
 
@@ -1207,20 +1207,7 @@ workflow VIRALRECON {
     //
     // MODULE: Pipeline reporting
     //
-    // freyja modules (upstream nf-core) report versions on the 'versions' topic
-    def topic_versions_string = channel.topic("versions")
-        .distinct()
-        .map { process, tool, version ->
-            [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
-        }
-        .groupTuple(by:0)
-        .map { process, tool_versions ->
-            tool_versions.unique().sort()
-            "${process}:\n${tool_versions.join('\n')}"
-        }
-
     softwareVersionsToYAML(ch_versions)
-        .mix(topic_versions_string)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
             name: 'nf_core_'  +  'viralrecon_software_'  + 'mqc_'  + 'versions.yml',

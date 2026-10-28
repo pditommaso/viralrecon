@@ -4,19 +4,18 @@ process FREYJA_UPDATE {
 
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container
-?         'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/f0/f0b023f9c9e25f338d72ed6710e4d2a54a4c3a9a3ac34f17e08683894dc40830/data'
-:         'community.wave.seqera.io/library/freyja:2.0.6--be3cbd6f14f9d542' }"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/freyja:2.0.1--pyhdfd78af_0' :
+        'biocontainers/freyja:2.0.1--pyhdfd78af_0' }"
 
     input:
     val db_name
 
     output:
-    path "${db_name}/*barcodes.*"            , emit: barcodes
-    path "${db_name}/*lineages.yml"          , emit: lineages_topology
-    path "${db_name}/*pathogen_config.yml"   , emit: config
-    path "${db_name}/*curated_lineages.json" , emit: lineages_meta, optional: true
-    tuple val("${task.process}"), val('freyja'), eval("freyja --version | sed 's/.* //'"), topic: versions, emit: versions_freyja
+    path "${db_name}/usher_barcodes.feather"   , emit: barcodes
+    path "${db_name}/lineages.yml"         , emit: lineages_topology
+    path "${db_name}/curated_lineages.json", emit: lineages_meta
+    path "versions.yml"                    , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,8 +26,12 @@ process FREYJA_UPDATE {
     mkdir -p $db_name
     freyja \\
         update \\
-        $args \\
         --outdir $db_name
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        freyja: \$(echo \$(freyja --version 2>&1) | sed 's/^.*version //' )
+    END_VERSIONS
     """
 
     stub:
@@ -38,7 +41,10 @@ process FREYJA_UPDATE {
     touch "${db_name}/usher_barcodes.csv"
     touch "${db_name}/lineages.yml"
     touch "${db_name}/curated_lineages.json"
-    touch "${db_name}/pathogen_config.yml"
 
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        freyja: \$(echo \$(freyja --version 2>&1) | sed 's/^.*version //' )
+    END_VERSIONS
     """
 }
